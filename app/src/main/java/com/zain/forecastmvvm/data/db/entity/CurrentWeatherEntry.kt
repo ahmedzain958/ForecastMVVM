@@ -5,7 +5,6 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-
 const val CURRENT_WEATHER_ID = 0
 @Entity(tableName = "current_weather")
 data class CurrentWeatherEntry(
@@ -42,5 +41,5 @@ data class CurrentWeatherEntry(
     val windMph: Double
 ) {
     @PrimaryKey(autoGenerate = false)
-    val id: Int = CURRENT_WEATHER_ID
+    var id: Int = CURRENT_WEATHER_ID
 }

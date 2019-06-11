@@ -8,7 +8,7 @@ import com.zain.forecastmvvm.data.db.entity.CurrentWeatherEntry
 
 
 @Database(
-    entities = [CurrentWeatherEntry::class],
+    entities = [CurrentWeatherEntry::class]  ,
     version = 1
 )
 abstract class ForecastDatabase : RoomDatabase() {

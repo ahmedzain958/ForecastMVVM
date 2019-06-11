@@ -1,14 +1,16 @@
 package com.zain.forecastmvvm.ui.weather.current
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.zain.forecastmvvm.R
 import com.zain.forecastmvvm.data.network.ApixuWeatherApiService
+import com.zain.forecastmvvm.data.network.ConnectivityInterceptorImpl
+import com.zain.forecastmvvm.data.network.WeatherNetworkDataSourceImpl
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,11 +35,13 @@ class CurrentWeatherFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CurrentWeatherViewModel::class.java)
         // TODO: Use the ViewModel
-
-        val apiService = ApixuWeatherApiService()
+        val apiService = ApixuWeatherApiService(ConnectivityInterceptorImpl(this.context!!))
+        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
+        weatherNetworkDataSource.downloadedCurrentWeather.observe(this, Observer {
+            textView.text = it.toString()
+        })
         GlobalScope.launch(Dispatchers.Main) {
-            val currentWeatherResponse = apiService.getCurrentWeather("Cairo", "en").await()
-            textView.text = currentWeatherResponse.currentWeatherEntry.toString()
+            weatherNetworkDataSource.fetchCurrentWeather("Cairo", "en")
         }
     }
 

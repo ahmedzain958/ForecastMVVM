@@ -1,11 +1,14 @@
 package com.zain.forecastmvvm.data.network
 
-import androidx.lifecycle.*
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.zain.forecastmvvm.data.network.response.CurrentWeatherResponse
+import com.zain.forecastmvvm.internal.NoConnectivityException
 
 class WeatherNetworkDataSourceImpl(
     private val apixuWeatherApiService: ApixuWeatherApiService
-) : WeatherNetworkDataSource,LifecycleOwner{
+) : WeatherNetworkDataSource {
 
     val _downloadedCurrentWeather = MutableLiveData<CurrentWeatherResponse>()
     override val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>
@@ -13,14 +16,12 @@ class WeatherNetworkDataSourceImpl(
 
     override suspend fun fetchCurrentWeather(location: String, languageCode: String) {
         try {
-            val fetcheCurrentWeather = apixuWeatherApiService.getCurrentWeather(
-                location,
-                languageCode
-            )
+            val fetcheCurrentWeather = apixuWeatherApiService
+                .getCurrentWeather(location, languageCode)
                 .await()
-            _downloadedCurrentWeather.postValue()
-        } catch () {
-
+            _downloadedCurrentWeather.postValue(fetcheCurrentWeather)
+        } catch (e: NoConnectivityException) {
+            Log.e("Connectivity", "No internet connection.", e)
         }
     }
 }

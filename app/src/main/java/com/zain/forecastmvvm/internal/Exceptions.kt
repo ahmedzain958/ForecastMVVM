@@ -1,4 +1,4 @@
-package com.resocoder.forecastmvvm.internal
+package com.zain.forecastmvvm.internal
 
 import java.io.IOException
 

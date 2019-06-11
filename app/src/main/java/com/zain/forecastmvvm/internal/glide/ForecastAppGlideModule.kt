@@ -1,4 +1,4 @@
-package com.resocoder.forecastmvvm.internal.glide
+package com.zain.forecastmvvm.internal.glide
 
 import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule

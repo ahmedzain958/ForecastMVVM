@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val API_KEY = "c469b4eb4d8e48098c6174330190905   "
+const val API_KEY = "c469b4eb4d8e48098c6174330190905"
 
 //http://api.apixu.com/v1/current.json?key=c469b4eb4d8e48098c6174330190905&q=Cairo&lang=en
 interface ApixuWeatherApiService {

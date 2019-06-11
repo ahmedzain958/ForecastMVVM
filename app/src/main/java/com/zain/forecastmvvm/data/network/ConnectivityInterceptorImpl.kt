@@ -2,7 +2,7 @@ package com.zain.forecastmvvm.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager
-import com.resocoder.forecastmvvm.internal.NoConnectivityException
+import com.zain.forecastmvvm.internal.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
 
