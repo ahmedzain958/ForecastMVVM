@@ -2,6 +2,7 @@ package com.zain.forecastmvvm
 
 import android.app.Application
 import android.content.Context
+import android.preference.PreferenceManager
 import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.zain.forecastmvvm.data.db.ForecastDatabase
@@ -38,5 +39,6 @@ class ForecastApplication : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
 }
