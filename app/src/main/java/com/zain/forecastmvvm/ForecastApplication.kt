@@ -3,10 +3,14 @@ package com.zain.forecastmvvm
 import android.app.Application
 import android.content.Context
 import com.google.android.gms.location.LocationServices
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.zain.forecastmvvm.data.db.ForecastDatabase
 import com.zain.forecastmvvm.data.network.*
+import com.zain.forecastmvvm.data.provider.UnitProvider
+import com.zain.forecastmvvm.data.provider.UnitProviderImpl
 import com.zain.forecastmvvm.data.repository.ForecastRepository
 import com.zain.forecastmvvm.data.repository.ForecastRepositoryImpl
+import com.zain.forecastmvvm.ui.weather.future.detail.CurrentWeatherViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -27,6 +31,12 @@ class ForecastApplication : Application(), KodeinAware {
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        AndroidThreeTen.init(this)
+    }
 }
