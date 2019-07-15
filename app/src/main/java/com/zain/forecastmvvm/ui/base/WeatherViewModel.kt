@@ -18,6 +18,6 @@ abstract class WeatherViewModel(
         get() = unitSystem == UnitSystem.METRIC
 
     val weatherLocation by lazyDeferred {
-//        forecastRepository.getWeatherLocation()
+        forecastRepository.getWeatherLocation()
     }
 }

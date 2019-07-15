@@ -5,22 +5,13 @@ import com.zain.forecastmvvm.data.provider.UnitProvider
 import com.zain.forecastmvvm.data.repository.ForecastRepository
 import com.zain.forecastmvvm.internal.UnitSystem
 import com.zain.forecastmvvm.internal.lazyDeferred
+import com.zain.forecastmvvm.ui.base.WeatherViewModel
 
 class CurrentWeatherViewModel(
     private val forecastRepository: ForecastRepository,
     private val unitProvider: UnitProvider
-) : ViewModel() {
-    private val unitSystem = unitProvider.getUnitSystem()
-
-    val isMetric: Boolean
-        get() = unitSystem == UnitSystem.METRIC
-
+) : WeatherViewModel(forecastRepository,unitProvider) {
     val weather by lazyDeferred {
-        // lazy in order not to be called whenever the class instantiated
-        forecastRepository.getCurrentWeather(isMetric)
-    }
-    val weatherLocation by lazyDeferred {
-        // lazy in order not to be called whenever the class instantiated
-        forecastRepository.getWeatherLocation()
+        forecastRepository.getCurrentWeather(super.isMetricUnit)
     }
 }
