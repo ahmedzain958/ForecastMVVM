@@ -1,4 +1,4 @@
-package com.zain.forecastmvvm.data.db.unitlocalized
+package com.zain.forecastmvvm.data.db.unitlocalized.current
 
 
 interface UnitSpecificCurrentWeatherEntry {

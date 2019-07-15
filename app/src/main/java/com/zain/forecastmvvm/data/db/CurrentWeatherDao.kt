@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.zain.forecastmvvm.data.db.entity.CurrentWeatherEntry
-import com.zain.forecastmvvm.data.db.unitlocalized.ImperialCurrentWeatherEntry
-import com.zain.forecastmvvm.data.db.unitlocalized.MetricCurrentWeatherEntry
+import com.zain.forecastmvvm.data.db.unitlocalized.current.ImperialCurrentWeatherEntry
+import com.zain.forecastmvvm.data.db.unitlocalized.current.MetricCurrentWeatherEntry
 
 
 @Dao

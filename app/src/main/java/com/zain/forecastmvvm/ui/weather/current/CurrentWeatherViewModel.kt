@@ -19,4 +19,8 @@ class CurrentWeatherViewModel(
         // lazy in order not to be called whenever the class instantiated
         forecastRepository.getCurrentWeather(isMetric)
     }
+    val weatherLocation by lazyDeferred {
+        // lazy in order not to be called whenever the class instantiated
+        forecastRepository.getWeatherLocation()
+    }
 }
