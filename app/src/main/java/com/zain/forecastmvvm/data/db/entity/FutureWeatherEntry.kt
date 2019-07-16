@@ -11,7 +11,6 @@ import com.google.gson.annotations.SerializedName
 data class FutureWeatherEntry(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    @SerializedName("date")
     val date: String,
     @Embedded
     val day: Day

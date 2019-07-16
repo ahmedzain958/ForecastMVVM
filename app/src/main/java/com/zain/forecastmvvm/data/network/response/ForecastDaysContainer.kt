@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 import com.zain.forecastmvvm.data.db.entity.FutureWeatherEntry
 
 data class ForecastDaysContainer(
-    @SerializedName("futureWeatherEntry")
+    @SerializedName("forecastday")
     val entries: List<FutureWeatherEntry>
 )

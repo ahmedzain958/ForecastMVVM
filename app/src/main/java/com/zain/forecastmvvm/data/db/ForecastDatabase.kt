@@ -12,7 +12,7 @@ import com.zain.forecastmvvm.data.db.entity.WeatherLocation
 
 @Database(
     entities = [CurrentWeatherEntry::class, FutureWeatherEntry::class, WeatherLocation::class],
-    version = 1
+    version = 3
 )
 @TypeConverters(LocalDateConverter::class)
 abstract class ForecastDatabase : RoomDatabase() {

@@ -1,6 +1,5 @@
 package com.zain.forecastmvvm.data.db.unitlocalized.current
 
-
 interface UnitSpecificCurrentWeatherEntry {
     val temperature: Double
     val conditionText: String
